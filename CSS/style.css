@@ -1,16 +1,41 @@
+/**
+ * General CSS
+ */
+
 body {
   background-color: black;
 }
 
+/**
+ * Content CSS
+ */
+
 .content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+
   width: 1050px;
   margin: 0 auto;
 }
 
 .menu-row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+
   align-items: center;
   justify-content: space-between;
   height: 300px;
@@ -19,6 +44,38 @@ body {
 
 .menu-image {
   border: 1px solid red;
+  color: white;
   height: 200px;
   width: 400px;
+}
+
+/**
+ * Menu Selection CSS
+ */
+
+@keyframes slide {
+	0% {position: absolute; margin-left: -35px;}
+	50% {position: absolute; margin-left: -40px;}
+	100% {position: absolute; margin-left: -45px;}
+}
+
+@-webkit-keyframes slide {
+	0% {position: absolute; margin-left: -35px;}
+	50% {position: absolute; margin-left: -40px;}
+	100% {position: absolute; margin-left: -45px;}
+}
+
+.selector {
+  border: 1px solid green;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: 75px;
+  margin-left: -35px;
+  animation: slide 0.3s infinite;
+	animation-direction: alternate;
+
+	/* Safari and Chrome */
+	-webkit-animation: slide 0.3s infinite;
+	-webkit-animation-direction: alternate;
 }
