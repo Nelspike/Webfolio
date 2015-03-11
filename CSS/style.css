@@ -54,15 +54,15 @@ body {
  */
 
 @keyframes slide {
-	0% {position: absolute; margin-left: -35px;}
-	50% {position: absolute; margin-left: -40px;}
-	100% {position: absolute; margin-left: -45px;}
+  0% {position: absolute; margin-left: -35px;}
+  50% {position: absolute; margin-left: -40px;}
+  100% {position: absolute; margin-left: -45px;}
 }
 
 @-webkit-keyframes slide {
-	0% {position: absolute; margin-left: -35px;}
-	50% {position: absolute; margin-left: -40px;}
-	100% {position: absolute; margin-left: -45px;}
+  0% {position: absolute; margin-left: -35px;}
+  50% {position: absolute; margin-left: -40px;}
+  100% {position: absolute; margin-left: -45px;}
 }
 
 .selector {
@@ -73,9 +73,9 @@ body {
   margin-top: 75px;
   margin-left: -35px;
   animation: slide 0.3s infinite;
-	animation-direction: alternate;
+  animation-direction: alternate;
 
-	/* Safari and Chrome */
-	-webkit-animation: slide 0.3s infinite;
-	-webkit-animation-direction: alternate;
+  /* Safari and Chrome */
+  -webkit-animation: slide 0.3s infinite;
+  -webkit-animation-direction: alternate;
 }
