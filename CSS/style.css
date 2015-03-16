@@ -21,8 +21,12 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
 
-  width: 1050px;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin-top: -300px;
+  margin-left: -450px;
 }
 
 .menu-row {
@@ -37,16 +41,17 @@ body {
   flex-direction: row;
 
   align-items: center;
-  justify-content: space-between;
-  height: 300px;
+  justify-content: center;
   text-align: center;
 }
 
 .menu-image {
   border: 1px solid red;
   color: white;
-  height: 200px;
-  width: 400px;
+  height: 150px;
+  width: 350px;
+
+  margin: 25px 50px;
 }
 
 /**
@@ -70,7 +75,7 @@ body {
   position: absolute;
   width: 50px;
   height: 50px;
-  margin-top: 75px;
+  margin-top: 50px;
   margin-left: -35px;
   animation: slide 0.3s infinite;
   animation-direction: alternate;

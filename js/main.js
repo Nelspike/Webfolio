@@ -26,7 +26,7 @@ function handPosition(current, key) {
   }
 
   $(".selector").data("position", next);
-  $(".selector").detach().appendTo(".menu-image[data-position="+next+"]");
+  $(".selector").detach().prependTo(".menu-image[data-position="+next+"]");
 }
 
 /**
