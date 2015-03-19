@@ -84,3 +84,27 @@ body {
   -webkit-animation: slide 0.3s infinite;
   -webkit-animation-direction: alternate;
 }
+
+@media screen and (max-width: 1024px) {
+  .content {
+    position: relative;
+    top: initial;
+    left: initial;
+    align-items: center;
+
+    margin: 0px;
+  }
+
+  .menu-row {
+    flex-direction: column;
+  }
+
+  .menu-image {
+    height: 75px;
+    margin-bottom: 0px;
+  }
+
+  .selector {
+    display: none;
+  }
+}
