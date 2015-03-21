@@ -104,6 +104,11 @@ function menuClick() {
   $(".menu-image").click(function() {
     getPage($(this).data("position"));
   });
+
+  $(".menu-image").hover(function() {
+    var position = $(this).data("position");
+    $(".selector").detach().prependTo(".menu-image[data-position="+position+"]");
+  });
 }
 
 $(document).ready(function() {
