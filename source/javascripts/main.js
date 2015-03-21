@@ -1,3 +1,6 @@
+//= require_tree .
+//= require jquery
+
 /**
  * HashMap that contains all of the key stroke information.
  *
