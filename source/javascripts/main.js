@@ -8,16 +8,24 @@
 var keyMap = {13: "menu", 37: "left", 38: "up", 39: "right", 40: "down",
   65: "left", 68: "right", 83: "down", 87: "up"};
 
+var icons = ["Me", "University", "Projects",
+    "Crest",
+    "Experience", "Future", "Skills"];
+
+var buttons = $.map(icons, function(value, index) {
+  return '<div class="bottom-button">' + value + '</div>';
+}).join(" ");
+
 /**
  * Static Menu for Inner Pages.
  */
-var bottom = '<div class="bottom-menu"></div>';
+var bottom = '<div class="bottom-menu">' + buttons + '</div>';
 
 function contentUp(html) {
   var content = $(".content");
 
   TweenMax.to(content, 1,
-    {top: "-50%", onComplete: transformBody,
+    {top: "-100%", onComplete: transformBody,
       onCompleteParams: [html], ease: Power4.easeInOut, y: 0}
   );
 }
