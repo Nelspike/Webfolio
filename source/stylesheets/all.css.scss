@@ -17,18 +17,18 @@ body {
     align-items: center;
 
     margin: 0px;
-  }
 
-  .menu-row {
-    flex-direction: column;
-  }
+    .menu-row {
+      flex-direction: column;
 
-  .menu-image {
-    height: 75px;
-    margin-bottom: 0px;
-  }
+      .menu-image {
+        height: 75px;
+        margin-bottom: 0px;
 
-  .selector {
-    display: none;
+        .selector {
+          display: none;
+        }
+      }
+    }
   }
 }
