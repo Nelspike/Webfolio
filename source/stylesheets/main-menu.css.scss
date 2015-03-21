@@ -1,0 +1,49 @@
+/**
+ * Content CSS
+ */
+
+.content {
+  @include flex-box();
+  @include flex-direction(column);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin-top: -300px;
+  margin-left: -450px;
+
+  .menu-row {
+    @include flex-box();
+    @include flex-direction(row);
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .menu-image {
+      border: 1px solid red;
+      color: white;
+      height: 150px;
+      width: 350px;
+
+      margin: 25px 50px;
+
+      .selector {
+        border: 1px solid green;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        margin-top: 50px;
+        margin-left: -35px;
+        animation: slide 0.3s infinite;
+        animation-direction: alternate;
+
+        /* Safari and Chrome */
+        -webkit-animation: slide 0.3s infinite;
+        -webkit-animation-direction: alternate;
+      }
+    }
+  }
+}
+

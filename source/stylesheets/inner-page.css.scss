@@ -1,0 +1,13 @@
+/**
+ * Inner Page CSS
+ */
+
+.bottom-menu {
+  position: absolute;
+  bottom: 8px;
+
+  @include cross-calc(width, "100% - 16px");
+  height: 150px;
+
+  border-top: 2px solid white;
+}
