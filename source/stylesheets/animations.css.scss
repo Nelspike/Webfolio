@@ -1,0 +1,11 @@
+@keyframes slide {
+  0% {position: absolute; margin-left: -35px;}
+  50% {position: absolute; margin-left: -40px;}
+  100% {position: absolute; margin-left: -45px;}
+}
+
+@-webkit-keyframes slide {
+  0% {position: absolute; margin-left: -35px;}
+  50% {position: absolute; margin-left: -40px;}
+  100% {position: absolute; margin-left: -45px;}
+}

@@ -1,0 +1,31 @@
+/**
+ * Applies the calc property to the stylesheet.
+ *
+ */
+@mixin cross-calc($property, $exp) {
+  #{$property}: -webkit-calc(#{$exp});
+  #{$property}: -moz-calc(#{$exp});
+  #{$property}: calc(#{$exp});
+}
+
+/**
+ * Applies a flexbox to the element, having it crossbrowser.
+ *
+ */
+@mixin flex-box() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/**
+ * Applies the flex direction to an element that is a flex box.
+ *
+ */
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: #{$direction};
+  -ms-flex-direction: #{$direction};
+  flex-direction: #{$direction};
+}
