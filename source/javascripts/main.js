@@ -36,6 +36,22 @@ function transformBody(html) {
   contentDown();
 }
 
+function getPage(current) {
+  $.get("/statics/" + current + ".html", function(data) {
+    var html = '<div class="inner-content">' + data + bottom + '</div>';
+    var element = $('.menu-image[data-position="'+ current +'"]');
+
+    TweenMax.to(element, 0.1,
+      {
+        background: "rgba(256,256,256,1)",
+        ease: Expo.easeInOut, y: 0,
+        yoyo: true, repeat: 5,
+        onComplete: contentUp, onCompleteParams: [html]
+      }
+    );
+  });
+}
+
 
 /**
  * Moves the selector from one position to another.
@@ -68,20 +84,7 @@ function handPosition(current, key) {
     $(".selector").detach().prependTo(".menu-image[data-position="+next+"]");
   }
   else {
-    $.get("/statics/" + current + ".html", function(data) {
-      var html = '<div class="inner-content">' + data + bottom + '</div>';
-      var element = $('.menu-image[data-position="'+ current +'"]');
-
-      TweenMax.to(element, 0.1,
-        {
-          background: "rgba(256,256,256,1)",
-          ease: Expo.easeInOut, y: 0,
-          yoyo: true, repeat: 5,
-          onComplete: contentUp, onCompleteParams: [html]
-        }
-      );
-      //contentUp(html);
-    });
+    getPage(current);
   }
 }
 
@@ -97,6 +100,13 @@ function handMovement() {
   });
 }
 
+function menuClick() {
+  $(".menu-image").click(function() {
+    getPage($(this).data("position"));
+  });
+}
+
 $(document).ready(function() {
   handMovement();
+  menuClick();
 });

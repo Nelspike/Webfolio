@@ -45,6 +45,10 @@
         -webkit-animation: slide 0.3s infinite;
         -webkit-animation-direction: alternate;
       }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
