@@ -13,8 +13,33 @@ var keyMap = {13: "menu", 37: "left", 38: "up", 39: "right", 40: "down",
  */
 var bottom = '<div class="bottom-menu"></div>';
 
+function contentUp(html) {
+  var content = $(".content");
+
+  TweenMax.to(content, 1,
+    {top: "-50%", onComplete: transformBody,
+      onCompleteParams: [html], ease: Power4.easeInOut, y: 0}
+  );
+}
+
+function contentDown() {
+  var innerContent = $(".inner-content");
+  TweenMax.to(innerContent, 1, {top: "0", ease: Power4.easeInOut, y:0});
+}
+
+/**
+ * Sets the HTML of a given body to the requests HTML.
+ *
+ */
+function transformBody(html) {
+  $("body").html(html);
+  contentDown();
+}
+
+
 /**
  * Moves the selector from one position to another.
+ *
  */
 function handPosition(current, key) {
   var next = 0;
@@ -44,7 +69,18 @@ function handPosition(current, key) {
   }
   else {
     $.get("/statics/" + current + ".html", function(data) {
-      $("body").html(data + bottom);
+      var html = '<div class="inner-content">' + data + bottom + '</div>';
+      var element = $('.menu-image[data-position="'+ current +'"]');
+
+      TweenMax.to(element, 0.1,
+        {
+          background: "rgba(256,256,256,1)",
+          ease: Expo.easeInOut, y: 0,
+          yoyo: true, repeat: 5,
+          onComplete: contentUp, onCompleteParams: [html]
+        }
+      );
+      //contentUp(html);
     });
   }
 }
