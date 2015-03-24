@@ -1,3 +1,5 @@
+@import "mixins";
+
 /**
  * Inner Page CSS
  */
@@ -8,6 +10,51 @@
 
   position: absolute;
   top: -100%;
+
+  .inner-page {
+
+    .page-background {
+      @include cross-calc(height, "100%  - 135px");
+      width: 350px;
+
+      position: absolute;
+
+      border: 1px solid red;
+    }
+
+    .page-content {
+      @include cross-calc(height, "100%  - 185px");
+      @include cross-calc(width, "100%  - 200px");
+
+      color: white;
+      padding: 25px 100px;
+      position: absolute;
+
+      border: 1px solid green;
+
+      .page-title {
+        font-size: 35px;
+        margin: 25px 0px;
+      }
+
+      .page-context {
+        min-height: 275px;
+        margin: 25px 0px;
+      }
+
+      .external-url {
+        display: inline-block;
+        padding: 10px;
+
+        width: 150px;
+        font-size: 20px;
+        text-align: center;
+
+        border: 1px solid green;
+
+      }
+    }
+  }
 
   .bottom-menu {
     position: absolute;

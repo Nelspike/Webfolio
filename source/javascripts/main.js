@@ -32,7 +32,7 @@ function contentUp(html) {
 
 function contentDown() {
   var innerContent = $(".inner-content");
-  TweenMax.to(innerContent, 1, {top: "0", ease: Power4.easeInOut, y:0});
+  TweenMax.to(innerContent, 1, {top: "8px", ease: Power4.easeInOut, y:0});
 }
 
 /**
