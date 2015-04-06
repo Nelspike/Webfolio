@@ -13,48 +13,74 @@ var icons = ["Me", "University", "Projects",
     "Experience", "Future", "Skills"];
 
 var buttons = $.map(icons, function(value, index) {
-  return '<div class="bottom-button">' + value + '</div>';
+  if (index == 3) {
+    return '<div class="bottom-button" data-crest=true>'
+      + value + '</div>';
+  }
+  else if (index > 3) {
+    return '<div class="bottom-button" data-position="' + (index-1) + '">'
+      + value + '</div>';
+  }
+
+  return '<div class="bottom-button" data-position="' + index + '">'
+    + value + '</div>';
+
 }).join(" ");
 
 /**
  * Static Menu for Inner Pages.
  */
+var crest = '<div class="bottom-button" data-crest=true>Crest</div>';
 var bottom = '<div class="bottom-menu">' + buttons + '</div>';
+var bottomBurger = '<div class="bottom-burger">' + crest + '</div>';
 
-function contentUp(html) {
-  var content = $(".content");
-
-  TweenMax.to(content, 1,
+function contentUp(html, content) {
+  TweenMax.to($(content), 1,
     {top: "-100%", onComplete: transformBody,
-      onCompleteParams: [html], ease: Power4.easeInOut, y: 0}
+      onCompleteParams: [html, content], ease: Power4.easeInOut, y: 0}
   );
 }
 
-function contentDown() {
-  var innerContent = $(".inner-content");
-  TweenMax.to(innerContent, 1, {top: "8px", ease: Power4.easeInOut, y:0});
+function contentDown(content) {
+  var innerContent = content == ".content" ? $(".inner-content") : $(content);
+  var marginTop = content == ".content" ? "8px" : "0px";
+  TweenMax.to(innerContent, 1, {top: marginTop, ease: Power4.easeInOut, y:0});
 }
 
 /**
  * Sets the HTML of a given body to the requests HTML.
  *
  */
-function transformBody(html) {
-  $("body").html(html);
-  contentDown();
+function transformBody(html, content) {
+  var innerContent = content == ".content" ? $("body") : $(content);
+  var toInsert = content == ".content" || html == "" ? html : $(html).html();
+
+  innerContent.html(toInsert);
+
+  if (content == ".content") {
+    bindPage();
+  }
+  contentDown(content);
 }
 
-function getPage(current) {
+function getPage(current, element, content) {
   $.get("/statics/" + current + ".html", function(data) {
-    var html = '<div class="inner-content">' + data + bottom + '</div>';
-    var element = $('.menu-image[data-position="'+ current +'"]');
+    var html = "";
+
+    if (content == ".content") {
+      html = '<div class="inner-content">' + data + bottom;
+      html += bottomBurger + '</div>';
+    }
+    else {
+      html = data;
+    }
 
     TweenMax.to(element, 0.1,
       {
         background: "rgba(256,256,256,1)",
         ease: Expo.easeInOut, y: 0,
         yoyo: true, repeat: 5,
-        onComplete: contentUp, onCompleteParams: [html]
+        onComplete: contentUp, onCompleteParams: [html, content]
       }
     );
   });
@@ -92,7 +118,7 @@ function handPosition(current, key) {
     $(".selector").detach().prependTo(".menu-image[data-position="+next+"]");
   }
   else {
-    getPage(current);
+    getPage(current, $(".menu-image[data-position="+current+"]"), ".content");
   }
 }
 
@@ -110,12 +136,41 @@ function handMovement() {
 
 function menuClick() {
   $(".menu-image").click(function() {
-    getPage($(this).data("position"));
+    getPage($(this).data("position"), $(this), ".content");
   });
 
   $(".menu-image").hover(function() {
     var position = $(this).data("position");
     $(".selector").detach().prependTo(".menu-image[data-position="+position+"]");
+  });
+}
+
+function openNav() {
+  var menu = $(".bottom-menu");
+  if ($(window).width() < 1024) {
+    TweenMax.to(menu, 1, {right: "0", ease: Power4.easeInOut, y:0});
+  }
+}
+
+function closeNav() {
+  var menu = $(".bottom-menu");
+  if ($(window).width() < 1024) {
+    TweenMax.to(menu, 1, {right: "-350px", ease: Power4.easeInOut, y:0});
+  }
+}
+
+function bindPage() {
+  $(".inner-content *")
+    .not(".bottom-menu, .bottom-burger, .bottom-burger *")
+    .click(closeNav);
+
+  $(".bottom-button").click(function() {
+    if (!$(this).data("crest")) {
+      getPage($(this).data("position"), $(this), ".inner-page");
+    }
+    else {
+      openNav();
+    }
   });
 }
 

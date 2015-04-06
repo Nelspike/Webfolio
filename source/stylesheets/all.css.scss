@@ -18,16 +18,60 @@ body {
     margin: 0px;
 
     .menu-row {
-      flex-direction: column;
+      width: 100%;
 
       .menu-image {
-        height: 75px;
+        width: 40%;
+        height: 30%;
         margin-bottom: 0px;
 
         .selector {
           display: none;
         }
       }
+    }
+  }
+
+  .inner-content {
+    overflow: hidden;
+
+    .inner-page {
+      .page-background {
+        height: 100%;
+      }
+
+      .page-content {
+        height: 100%;
+      }
+
+    }
+
+    .bottom-menu {
+      border: 1px solid pink;
+      height: 100%;
+      width: 250px;
+
+      right: -350px;
+      z-index: 5;
+      flex-direction: column;
+
+      background: black;
+
+      .bottom-button {
+        margin: 15px 20px;
+      }
+
+      .bottom-button[data-crest] {
+        display: none;
+      }
+    }
+
+    .bottom-burger {
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 120px;
     }
   }
 }
