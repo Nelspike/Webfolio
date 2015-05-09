@@ -137,6 +137,8 @@ function handMovement() {
 function menuClick() {
   $(".menu-image").click(function() {
     getPage($(this).data("position"), $(this), ".content");
+    $(".selector").hide();
+    $(".menu-image").unbind("click");
   });
 
   $(".menu-image").hover(function() {
