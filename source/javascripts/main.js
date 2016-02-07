@@ -8,9 +8,9 @@
 var keyMap = {13: "menu", 37: "left", 38: "up", 39: "right", 40: "down",
   65: "left", 68: "right", 83: "down", 87: "up"};
 
-var icons = ["Me", "University", "Projects",
-    "Crest",
-    "Experience", "Future", "Skills"];
+var icons = ["me", "experience", "projects",
+    "crest",
+    "skills", "future", "hobbies"];
 
 var buttons = $.map(icons, function(value, index) {
   if (index == 3) {
@@ -18,13 +18,10 @@ var buttons = $.map(icons, function(value, index) {
       + value + '</div>';
   }
   else if (index > 3) {
-    return '<div class="bottom-button" data-position="' + (index-1) + '">'
-      + value + '</div>';
+    return buildButton(value, index - 1);
   }
 
-  return '<div class="bottom-button" data-position="' + index + '">'
-    + value + '</div>';
-
+  return buildButton(value, index);
 }).join(" ");
 
 /**
@@ -34,9 +31,22 @@ var crest = '<div class="bottom-button" data-crest=true>Crest</div>';
 var bottom = '<div class="bottom-menu">' + buttons + '</div>';
 var bottomBurger = '<div class="bottom-burger">' + crest + '</div>';
 
+function buildButton(value, index) {
+  var div = '<div class="bottom-button" id="';
+  div += value + '" data-position="' + index + '">';
+
+  div += '<div class="button-container">';
+  div += '<span>' + value + '</span>';
+  div += '</div>';
+
+  div += '</div>';
+
+  return div;
+}
+
 function contentUp(html, content) {
   TweenMax.to($(content), 1,
-    {top: "-100%", onComplete: transformBody,
+    {top: "-125%", onComplete: transformBody,
       onCompleteParams: [html, content], ease: Power4.easeInOut, y: 0}
   );
 }
@@ -60,6 +70,7 @@ function transformBody(html, content) {
   if (content == ".content") {
     bindPage();
   }
+
   contentDown(content);
 }
 
@@ -77,7 +88,7 @@ function getPage(current, element, content) {
 
     TweenMax.to(element, 0.1,
       {
-        background: "rgba(256,256,256,1)",
+        background: "rgba(256, 256, 256, 1)",
         ease: Expo.easeInOut, y: 0,
         yoyo: true, repeat: 5,
         onComplete: contentUp, onCompleteParams: [html, content]
@@ -144,6 +155,7 @@ function menuClick() {
   $(".menu-image").hover(function() {
     var position = $(this).data("position");
     $(".selector").detach().prependTo(".menu-image[data-position="+position+"]");
+    $(".selector").data("position", position);
   });
 }
 
